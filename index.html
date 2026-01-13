@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Giphy Search</title>
+
+    <!-- Google Font (we'll finalize later) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+
+  <body>
+    <header class="site-header">
+      <h1 class="site-title">Giphy Search</h1>
+
+      <nav class="site-nav">
+        <a href="#">Home</a>
+        <a href="#">Trending</a>
+        <a href="#">About</a>
+      </nav>
+    </header>
+
+    <main class="container">
+      <section class="search-section">
+        <form id="searchForm" class="search-form">
+          <input
+            id="searchInput"
+            class="search-input"
+            type="search"
+            placeholder="Search for GIFs..."
+            required
+          />
+          <button class="search-button" type="submit">Search</button>
+        </form>
+      </section>
+
+      <section class="results-section">
+        <h2 class="results-title">Results</h2>
+        <div id="results" class="gif-grid"></div>
+      </section>
+    </main>
+
+    <script src="js/main.js"></script>
+  </body>
+</html>
