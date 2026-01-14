@@ -1,6 +1,7 @@
 const form = document.getElementById("searchForm");
 const input = document.getElementById("searchInput");
 const results = document.getElementById("results");
+const loadingMessage = document.getElementById("loadingMessage");
 
 // Replace with your own Giphy API key
 const API_KEY = "g2MvyhFviSpyZyJGjszfp9TVMAON0lEb";
@@ -17,6 +18,9 @@ form.addEventListener("submit", function (event) {
 function fetchGifs(query) {
   const url = `https://api.giphy.com/v1/gifs/search?api_key=${API_KEY}&q=${query}&limit=12`;
 
+  // show loading message
+  loadingMessage.style.display = "block";
+
   fetch(url)
     .then((response) => response.json())
     .then((data) => {
@@ -24,6 +28,7 @@ function fetchGifs(query) {
     })
     .catch((error) => {
       console.error("Error fetching gifs:", error);
+      loadingMessage.style.display = "none";
     });
 }
 
@@ -36,9 +41,12 @@ function displayGifs(gifs) {
 
     const img = document.createElement("img");
     img.src = gif.images.fixed_width.url;
-    img.alt = gif.title;
+    img.alt = gif.title || "Giphy image";
 
     card.appendChild(img);
     results.appendChild(card);
   });
+
+  // hide loading message AFTER gifs render
+  loadingMessage.style.display = "none";
 }
