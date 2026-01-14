@@ -2,6 +2,7 @@ const form = document.getElementById("searchForm");
 const input = document.getElementById("searchInput");
 const results = document.getElementById("results");
 const loadingMessage = document.getElementById("loadingMessage");
+const noResultsMessage = document.getElementById("noResultsMessage");
 
 // Replace with your own Giphy API key
 const API_KEY = "g2MvyhFviSpyZyJGjszfp9TVMAON0lEb";
@@ -18,8 +19,9 @@ form.addEventListener("submit", function (event) {
 function fetchGifs(query) {
   const url = `https://api.giphy.com/v1/gifs/search?api_key=${API_KEY}&q=${query}&limit=12`;
 
-  // show loading message
+  // reset messages
   loadingMessage.style.display = "block";
+  noResultsMessage.style.display = "none";
 
   fetch(url)
     .then((response) => response.json())
@@ -34,6 +36,13 @@ function fetchGifs(query) {
 
 function displayGifs(gifs) {
   results.innerHTML = "";
+
+  // no results case
+  if (gifs.length === 0) {
+    noResultsMessage.style.display = "block";
+    loadingMessage.style.display = "none";
+    return;
+  }
 
   gifs.forEach((gif) => {
     const card = document.createElement("div");
