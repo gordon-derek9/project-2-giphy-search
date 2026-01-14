@@ -3,6 +3,7 @@ const input = document.getElementById("searchInput");
 const results = document.getElementById("results");
 const loadingMessage = document.getElementById("loadingMessage");
 const noResultsMessage = document.getElementById("noResultsMessage");
+const clearButton = document.getElementById("clearButton");
 
 // Replace with your own Giphy API key
 const API_KEY = "g2MvyhFviSpyZyJGjszfp9TVMAON0lEb";
@@ -14,6 +15,13 @@ form.addEventListener("submit", function (event) {
   if (!query) return;
 
   fetchGifs(query);
+});
+
+clearButton.addEventListener("click", function () {
+  results.innerHTML = "";
+  input.value = "";
+  loadingMessage.style.display = "none";
+  noResultsMessage.style.display = "none";
 });
 
 function fetchGifs(query) {
